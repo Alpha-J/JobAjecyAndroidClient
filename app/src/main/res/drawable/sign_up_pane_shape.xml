@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drop Shadow Stack -->
+    <item>
+        <shape>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#c3fdff" />
+            <corners android:bottomLeftRadius="25dp" android:bottomRightRadius="10dp" android:topLeftRadius="10dp" android:topRightRadius="25dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top=".5dp" android:right=".5dp" android:bottom=".5dp" android:left=".5dp" />
+            <solid android:color="@color/purple_200" />
+            <corners android:bottomLeftRadius="25dp" android:bottomRightRadius="10dp" android:topLeftRadius="10dp" android:topRightRadius="25dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top=".5dp" android:right=".5dp" android:bottom=".5dp" android:left=".5dp" />
+            <solid android:color="@color/purple_500" />
+            <corners android:bottomLeftRadius="25dp" android:bottomRightRadius="10dp" android:topLeftRadius="10dp" android:topRightRadius="25dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="@color/purple_700" />
+            <corners android:bottomLeftRadius="25dp" android:bottomRightRadius="10dp" android:topLeftRadius="10dp" android:topRightRadius="25dp" />
+        </shape>
+    </item>
+
+    <!-- Background -->
+    <item>
+        <shape>
+            <solid android:color="#ffffff" />
+            <corners android:bottomLeftRadius="25dp" android:bottomRightRadius="10dp" android:topLeftRadius="10dp" android:topRightRadius="25dp" />
+        </shape>
+    </item>
+</layer-list>

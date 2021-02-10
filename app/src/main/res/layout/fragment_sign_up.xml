@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpFragment"
+    android:background="@drawable/ic_signup_back"
+    >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".9"
+        android:id="@+id/sign_up_horizontal_gLine_1"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2"
+        android:id="@+id/sign_up_horizontal_gLine_2"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".25"
+        android:id="@+id/sign_up_horizontal_gLine_3"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sign_up_vertical_gLine_1"
+        app:layout_constraintGuide_percent=".95"
+        android:orientation="vertical"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sign_up_vertical_gLine_2"
+        app:layout_constraintGuide_percent=".1"
+        android:orientation="vertical"
+        />
+
+
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_horizontal_gLine_1"
+        android:background="@drawable/login_btn_effect"
+        app:layout_constraintWidth_percent=".25"
+        app:layout_constraintHeight_percent=".05"
+        android:text="@string/Login"
+        android:textColor="@color/purple_500"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:textAlignment="inherit"
+        tools:ignore="RtlSymmetry"
+        android:id="@+id/goto_login_page"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintEnd_toEndOf="@id/sign_up_vertical_gLine_1"
+        app:layout_constraintWidth_percent=".9"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_horizontal_gLine_2"
+        app:layout_constraintHeight_percent=".6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/sign_up_pane_shape"
+
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_vertical_gLine_1_1"
+            app:layout_constraintGuide_percent=".3"
+            android:orientation="vertical"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintGuide_percent=".05"
+            android:orientation="vertical"
+            />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_vertical_gLine_1_2"
+            app:layout_constraintGuide_percent=".5"
+            android:orientation="vertical"
+            />
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_horizontal_gLine_1_1"
+            app:layout_constraintGuide_percent=".005"
+            android:orientation="horizontal"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_horizontal_gLine_1_3"
+            app:layout_constraintGuide_percent=".23"
+            android:orientation="horizontal"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sign_up_horizontal_gLine_1_2"
+            app:layout_constraintGuide_percent=".12"
+            android:orientation="horizontal"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_1"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_horizontal_gLine_1_1"
+            app:layout_constraintHeight_percent=".1"
+            app:layout_constraintWidth_percent=".4"
+            android:text="@string/Sign_Up"
+            android:textColor="@color/purple_700"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="25sp"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_firstname"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toTopOf="@id/sign_up_horizontal_gLine_1_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".44"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/first_name"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_lastname"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_2"
+            app:layout_constraintTop_toTopOf="@id/sign_up_horizontal_gLine_1_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".44"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/last_name"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_Username"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toTopOf="@id/sign_up_horizontal_gLine_1_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".9"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/username"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_Password"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_Username"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent=".9"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/password"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="textPassword"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_Email"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_Password"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent=".9"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/example_mail_domain"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:id="@+id/sign_up_Phone_number"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_Email"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintWidth_percent=".9"
+            app:layout_constraintHeight_percent=".1"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/phone_number"
+            android:textColorHint="@color/teal_200"
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            android:textAllCaps="false"
+            android:inputType="phone"
+            android:digits="0123456789+"
+            />
+
+
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/dropdownview"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_Phone_number"
+            app:layout_constraintWidth_percent=".9"
+            app:layout_constraintHeight_percent=".1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/dropdown_effect"
+            android:gravity="center"
+            android:hint="@string/select_user_type"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="14.5sp"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="8dp"
+            app:spinner_divider_color="@color/purple_500"
+            app:spinner_divider_show="true"
+            app:spinner_divider_size="0.4dp"
+            app:spinner_item_array="@array/userType"
+            app:spinner_popup_animation="fade"
+            app:spinner_popup_background="@color/purple_200"
+            app:spinner_popup_elevation="20dp"
+            app:spinner_arrow_animate="true"
+            tools:ignore="HardcodedText,UnusedAttribute"
+            android:foreground="?attr/selectableItemBackground"
+            />
+
+        <com.dx.dxloadingbutton.lib.LoadingButton
+            android:id="@+id/sign_up_loading_btn"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="@id/sign_up_vertical_gLine_1_0"
+            app:layout_constraintTop_toBottomOf="@id/dropdownview"
+            android:layout_marginTop="15dp"
+            app:layout_constraintHeight_percent=".1"
+            app:layout_constraintWidth_percent=".9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lb_btnColor="@color/purple_500"
+            app:lb_textColor="@color/white"
+            app:lb_resetAfterFailed="true"
+            app:lb_btnRippleColor="@android:color/white"
+            app:lb_btnDisabledColor="#cccccc"
+            app:lb_disabledTextColor="#999999"
+            app:lb_cornerRadius="32dp"
+            app:lb_rippleEnable="true"
+            app:lb_btnText="@string/Sign_Up"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/animate_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        android:visibility="invisible"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

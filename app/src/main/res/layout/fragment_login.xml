@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:background="@drawable/ic_login_back"
+    >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/login_horizontal_gLine_1"
+        app:layout_constraintGuide_percent=".9"
+        android:orientation="horizontal"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/login_horizontal_gLine_2"
+        app:layout_constraintGuide_percent=".25"
+        android:orientation="horizontal"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/login_vertical_gLine_1"
+        app:layout_constraintGuide_percent=".95"
+        android:orientation="vertical"
+        />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_horizontal_gLine_1"
+        app:layout_constraintWidth_percent=".25"
+        app:layout_constraintHeight_percent="0.05"
+        android:background="@drawable/signup_btn_effect"
+        android:text="@string/Sign_Up"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:textColor="@color/purple_500"
+        android:stateListAnimator="@null"
+        android:gravity="center"
+        android:textAlignment="inherit"
+        tools:ignore="RtlSymmetry"
+        android:id="@+id/goto_signup_page"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/login_horizontal_gLine_2"
+        app:layout_constraintHeight_percent=".5"
+        app:layout_constraintEnd_toEndOf="@id/login_vertical_gLine_1"
+        app:layout_constraintWidth_percent=".9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_signup_pane"
+        >
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_vertical_gline_1_1"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".25"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_vertical_gline_1_2"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_vertical_gline_1_3"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".17"
+            />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_horizontal_gline_1_1"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".3"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_horizontal_gline_1_2"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_horizontal_gline_1_3"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".05"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_horizontal_gline_1_4"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".7"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_horizontal_gline_1_5"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".88"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/login_vertical_gline_1_1"
+            app:layout_constraintTop_toTopOf="@id/login_horizontal_gline_1_3"
+            app:layout_constraintHeight_percent=".2"
+            app:layout_constraintWidth_percent=".5"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700"
+            android:textSize="40sp"
+            />
+
+        <EditText
+            android:id="@+id/login_username"
+            app:layout_constraintStart_toStartOf="@id/login_vertical_gline_1_2"
+            app:layout_constraintTop_toTopOf="@id/login_horizontal_gline_1_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintHeight_percent=".12"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/username"
+            android:textColorHint="@color/teal_200"
+            android:textSize="22sp"
+            android:paddingStart="15dp"
+            android:textColor="@color/purple_500"
+            tools:ignore="RtlSymmetry"
+            />
+
+        <EditText
+            android:id="@+id/login_password"
+            app:layout_constraintStart_toStartOf="@id/login_vertical_gline_1_2"
+            app:layout_constraintTop_toBottomOf="@id/login_horizontal_gline_1_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintHeight_percent=".12"
+            android:background="@drawable/login_signup_edit_text"
+            android:hint="@string/password"
+            android:textColorHint="@color/teal_200"
+            android:textSize="22sp"
+            android:textColor="@color/purple_500"
+            android:paddingStart="15dp"
+            tools:ignore="RtlSymmetry"
+            />
+
+
+        <com.dx.dxloadingbutton.lib.LoadingButton
+            android:id="@+id/login_loading_btn"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="@id/login_horizontal_gline_1_4"
+            app:layout_constraintStart_toStartOf="@id/login_vertical_gline_1_2"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintWidth_percent=".8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lb_btnColor="@color/purple_500"
+            app:lb_textColor="@color/white"
+            app:lb_resetAfterFailed="true"
+            app:lb_btnRippleColor="@android:color/white"
+            app:lb_btnDisabledColor="#cccccc"
+            app:lb_disabledTextColor="#999999"
+            app:lb_cornerRadius="32dp"
+            app:lb_rippleEnable="true"
+            app:lb_btnText="@string/login"
+            />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/login_vertical_gline_1_3"
+            app:layout_constraintTop_toTopOf="@id/login_horizontal_gline_1_5"
+            app:layout_constraintHeight_percent=".1"
+            app:layout_constraintWidth_percent=".66"
+            android:gravity="center"
+            android:text="@string/forgot_password"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700"
+            android:textSize="15sp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <View
+        android:id="@+id/animate_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_700"
+        android:visibility="invisible"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

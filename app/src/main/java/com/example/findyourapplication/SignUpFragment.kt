@@ -15,7 +15,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.dx.dxloadingbutton.lib.AnimationType
 import com.example.findyourapplication.databinding.FragmentSignUpBinding
-import com.skydoves.powerspinner.IconSpinnerAdapter
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"

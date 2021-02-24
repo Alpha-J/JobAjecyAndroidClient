@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employee_nav"
+    app:startDestination="@id/employee_home_frag">
+
+    <fragment
+        android:id="@+id/employee_home_frag"
+        android:name="com.example.findyourapplication.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"
+        >
+
+        <action
+            android:id="@+id/action_employee_home_frag_to_employee_req_frag"
+            app:destination="@id/employee_req_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_employee_home_frag_to_employee_profile_frag"
+            app:destination="@id/employee_profile_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/employee_profile_frag"
+        android:name="com.example.findyourapplication.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"
+        >
+
+        <action
+            android:id="@+id/action_employee_profile_frag_to_employee_req_frag"
+            app:destination="@id/employee_req_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_employee_profile_frag_to_employee_home_frag"
+            app:destination="@id/employee_home_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/employee_req_frag"
+        android:name="com.example.findyourapplication.RequestFragment"
+        android:label="RequestFragment"
+        tools:layout="@layout/fragment_request"
+        >
+
+        <action
+            android:id="@+id/action_employee_req_frag_to_employee_profile_frag"
+            app:destination="@id/employee_profile_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_employee_req_frag_to_employee_home_frag"
+            app:destination="@id/employee_home_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+    </fragment>
+</navigation>

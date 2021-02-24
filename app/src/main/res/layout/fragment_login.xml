@@ -33,7 +33,7 @@
         android:orientation="vertical"
         />
 
-    <Button
+    <android.widget.Button
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -194,6 +194,7 @@
             app:lb_cornerRadius="32dp"
             app:lb_rippleEnable="true"
             app:lb_btnText="@string/login"
+            android:stateListAnimator="@null"
             />
 
 

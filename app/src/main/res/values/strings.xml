@@ -16,14 +16,16 @@
     <string name="home">Home</string>
     <string name="requests">Requests</string>
     <string name="profile">Profile</string>
-    <string name="job_type">Job Type:</string>
-    <string name="skills">Skills:</string>
-    <string name="required_skills">Required Skills :</string>
+    <string name="job_type">Job Type</string>
+    <string name="skills">Skills</string>
+    <string name="required_skills">Required skills : </string>
     <string name="more_details">More Details</string>
     <string name="skill_score">Skill Score needed</string>
     <string name="job_description">Job Description</string>
     <string name="apply_job">Apply Job</string>
     <string name="collapse">collapse</string>
+    <string name="Requested">Requested</string>
+    <string name="company_name">Company </string>
 
     <string-array name="userType">
         <item>Employer</item>

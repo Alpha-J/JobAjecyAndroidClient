@@ -3,6 +3,7 @@ package com.example.findyourapplication
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findyourapplication.databinding.EmployeeHomeRecyclerItemBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecyclerViewRequestItemClickListener): ListAdapter<HomeRecyclerItemViewModelData,EmployeeHomeRecyclerAdopter.HomeItemViewHolder>(HomeDataDiffCallBack()){
@@ -52,20 +54,29 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
     class HomeItemViewHolder(val binding: EmployeeHomeRecyclerItemBinding,val viewModel: HomeRecyclerItemViewModel,val context:Context)
         :RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item:HomeRecyclerItemViewModelData,position: Int,mOnRecyclerViewItemClickListener: OnRecyclerViewRequestItemClickListener){
-            binding.jobHeader.text=item.header
-            binding.jobDescription.text=item.description
+
+        fun bind(item:HomeRecyclerItemViewModelData, position: Int, mOnRecyclerViewItemClickListener: OnRecyclerViewRequestItemClickListener){
+            val formatter = SimpleDateFormat("yyyy/MM/dd") //or use getDateInstance()
+            binding.jobDate.text=formatter.format(item.uploadedDate!!)
+            binding.jobDescription.text=item.jobDescription
+            binding.jobHeader.text=item.companyName
+            binding.jobNeededSkillsDesc.text=item.neededSkills
+            binding.rating.rating=item.skillRate!!
+            binding.jobTypeDesc.text=item.jobType
 
             binding.showMoreJobDetails.setOnClickListener {
-                if (!item.expanded){
-
-                    expand(binding,context)
-                }
-                else{
-
-                    collapse(binding,context)
-                }
+                expand(binding,context)
                 mOnRecyclerViewItemClickListener.onItemClick(position)
+            }
+            binding.collapse.setOnClickListener {
+                collapse(binding,context)
+                mOnRecyclerViewItemClickListener.onItemClick(position)
+            }
+
+            binding.applyForJob.setOnClickListener {
+                requestForJob(binding,context)
+                mOnRecyclerViewItemClickListener.onApplyClick(position)
+
             }
             binding.executePendingBindings()
         }
@@ -81,7 +92,7 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
 
     interface OnRecyclerViewRequestItemClickListener{
         fun onItemClick(pos: Int)
-
+        fun onApplyClick(pos:Int)
     }
 
     companion object {
@@ -89,6 +100,7 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
             val slideDown = AnimationUtils.loadAnimation(context, R.anim.anim_slide_down)
             val fadeOut=AnimationUtils.loadAnimation(context,R.anim.fade_out)
             val fadeIn=AnimationUtils.loadAnimation(context,R.anim.fade_in)
+
             val gp=(binding.employeeHomeItemV444.layoutParams as ConstraintLayout.LayoutParams).guidePercent
             val valueAnimator:ValueAnimator=ValueAnimator.ofFloat(gp,0.87f).setDuration(300)
             valueAnimator.interpolator=AccelerateDecelerateInterpolator()
@@ -98,8 +110,23 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
                 tmp.guidePercent=valueAnimator.animatedValue as Float
                 binding.employeeHomeItemV444.layoutParams=tmp
             }
+
+            val gp2=(binding.employeeHomeItemV44.layoutParams as ConstraintLayout.LayoutParams).guidePercent
+            val valueAnimator2:ValueAnimator=ValueAnimator.ofFloat(gp2,0.65f).setDuration(300)
+            valueAnimator2.interpolator=AccelerateDecelerateInterpolator()
+
+            valueAnimator2.addUpdateListener {
+                val tmp=binding.employeeHomeItemV44.layoutParams as ConstraintLayout.LayoutParams
+                tmp.guidePercent=valueAnimator2.animatedValue as Float
+                binding.employeeHomeItemV44.layoutParams=tmp
+            }
+
+
             binding.showMoreJobDetailsTextView.text=null
             valueAnimator.start()
+            valueAnimator2.start()
+            binding.collapseTxt.text=context.resources.getString(R.string.collapse)
+
             valueAnimator.doOnEnd {
                 binding.showMoreJobDetails.startAnimation(fadeOut)
                 binding.showMoreJobDetails.visibility=View.INVISIBLE
@@ -124,80 +151,108 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
                 }
             })
 
+
         }
+
+        fun requestForJob(binding: EmployeeHomeRecyclerItemBinding,context: Context){
+            val fadeOut=AnimationUtils.loadAnimation(context,R.anim.fade_out)
+            val fadeIn=AnimationUtils.loadAnimation(context,R.anim.fade_in)
+            val gp=(binding.employeeHomeItemV11.layoutParams as ConstraintLayout.LayoutParams).guidePercent
+            val valueAnimator:ValueAnimator=ValueAnimator.ofFloat(gp,0.4f,0.1f)
+            valueAnimator.duration=300
+            valueAnimator.interpolator=AccelerateDecelerateInterpolator()
+            valueAnimator.addUpdateListener {
+                val tmp=binding.employeeHomeItemV11.layoutParams as ConstraintLayout.LayoutParams
+                tmp.guidePercent=valueAnimator.animatedValue as Float
+                binding.employeeHomeItemV11.layoutParams=tmp
+            }
+
+
+            if(binding.applyText.text==context.resources.getText(R.string.apply_job)){
+                valueAnimator.start()
+                binding.applyIcon.startAnimation(fadeOut)
+                binding.applyIcon.setImageResource(R.drawable.ic_cancel)
+                binding.applyIcon.startAnimation(fadeIn)
+                binding.applyText.startAnimation(fadeOut)
+                binding.applyText.text=context.resources.getText(R.string.Requested)
+                binding.applyText.startAnimation(fadeIn)
+            }
+            else{
+                valueAnimator.start()
+                binding.applyIcon.startAnimation(fadeOut)
+                binding.applyIcon.setImageResource(R.drawable.ic_check_mark_button)
+                binding.applyIcon.startAnimation(fadeIn)
+                binding.applyText.startAnimation(fadeOut)
+                binding.applyText.text=context.resources.getText(R.string.apply_job)
+                binding.applyText.startAnimation(fadeIn)
+            }
+
+
+        }
+
 
         fun collapse(binding: EmployeeHomeRecyclerItemBinding,context: Context) {
-            val slideUp = AnimationUtils.loadAnimation(context, R.anim.anim_slide_up)
-            val gp=(binding.employeeHomeItemV4.layoutParams as ConstraintLayout.LayoutParams).guidePercent
-            val valueAnimator:ValueAnimator=ValueAnimator.ofFloat(gp,0.65f)
-            valueAnimator.interpolator=LinearInterpolator()
+            val fadeOut=AnimationUtils.loadAnimation(context,R.anim.fade_out)
+            val fadeIn=AnimationUtils.loadAnimation(context,R.anim.fade_in)
+
+            val gp=(binding.employeeHomeItemV44.layoutParams as ConstraintLayout.LayoutParams).guidePercent
+            val valueAnimator:ValueAnimator=ValueAnimator.ofFloat(gp,0.87f)
+            valueAnimator.interpolator=AccelerateDecelerateInterpolator()
             valueAnimator.duration=300
             valueAnimator.addUpdateListener {
-                val tmp=binding.employeeHomeItemV4.layoutParams as ConstraintLayout.LayoutParams
+                val tmp=binding.employeeHomeItemV44.layoutParams as ConstraintLayout.LayoutParams
                 tmp.guidePercent=valueAnimator.animatedValue as Float
-                binding.employeeHomeItemV4.layoutParams=tmp
+                binding.employeeHomeItemV44.layoutParams=tmp
             }
-            binding.showMoreJobDetails.visibility=View.VISIBLE
+
+            val gp2=(binding.employeeHomeItemV444.layoutParams as ConstraintLayout.LayoutParams).guidePercent
+            val valueAnimator2:ValueAnimator=ValueAnimator.ofFloat(gp2,0.65f).setDuration(300)
+            valueAnimator2.interpolator=AccelerateDecelerateInterpolator()
+
+            valueAnimator2.addUpdateListener {
+                val tmp=binding.employeeHomeItemV444.layoutParams as ConstraintLayout.LayoutParams
+                tmp.guidePercent=valueAnimator2.animatedValue as Float
+                binding.employeeHomeItemV444.layoutParams=tmp
+            }
+            binding.collapseTxt.text=null
             valueAnimator.start()
+            valueAnimator2.start()
+            binding.showMoreJobDetailsTextView.text=context.resources.getString(R.string.more_details)
+            valueAnimator.doOnEnd {
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.expandablePart.startAnimation(slideUp)
-                binding.expandablePart.visibility = View.GONE
-            }, 500)
+                binding.collapse.startAnimation(fadeOut)
+                binding.collapse.visibility=View.INVISIBLE
+
+                binding.applyForJob.startAnimation(fadeOut)
+                binding.applyForJob.visibility=View.INVISIBLE
 
 
 
-        }
-
-        private fun changeViewSizeWithAnimation(view: View, viewSize: Int, duration: Long) {
-            val startViewSize = view.measuredHeight
-            val endViewSize: Int =
-                    if (viewSize < startViewSize) (viewSize) else (view.measuredHeight + viewSize)
-            val valueAnimator =
-                    ValueAnimator.ofInt(startViewSize, endViewSize)
-            valueAnimator.duration = duration
-            valueAnimator.addUpdateListener {
-                val animatedValue = valueAnimator.animatedValue as Int
-                val layoutParams = view.layoutParams
-                layoutParams.height = animatedValue
-                view.layoutParams = layoutParams
             }
-            valueAnimator.start()
+            fadeOut.setAnimationListener(object:Animation.AnimationListener{
+                override fun onAnimationStart(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+
+                    binding.expandablePart.visibility = View.GONE
+
+                    binding.showMoreJobDetails.visibility=View.VISIBLE
+                    binding.showMoreJobDetails.startAnimation(fadeIn)
+
+
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+
+                }
+
+            })
 
         }
 
-        private fun height(textView:TextView,context: Context, text: String, typeface: Typeface?, textSize: Int, padding: Int): Int {
-            //val textView = TextView(context)
-            //textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize.toFloat())
-            //textView.setPadding(padding, padding, padding, padding)
-            textView.typeface = typeface
-            textView.text = text
-            val mMeasureSpecWidth =
-                    View.MeasureSpec.makeMeasureSpec(getDeviceWidth(context), View.MeasureSpec.AT_MOST)
-            val mMeasureSpecHeight = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-            textView.measure(mMeasureSpecWidth, mMeasureSpecHeight)
-            return textView.measuredHeight
-        }
 
-        private fun dp2px(dpValue: Float, context: Context): Int {
-            val scale = context.resources.displayMetrics.density
-            return (dpValue * scale + 0.5f).toInt()
-        }
-
-        private fun getDeviceWidth(context: Context): Int {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val displayMetrics = DisplayMetrics()
-                val display: Display? = context.display
-                display?.getRealMetrics(displayMetrics)
-                displayMetrics.widthPixels
-            } else {
-                val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-                val displayMetrics = DisplayMetrics()
-                wm.defaultDisplay.getMetrics(displayMetrics)
-                context.display!!.getRealMetrics(displayMetrics)
-                displayMetrics.widthPixels
-            }
-        }
     }
 
     class HomeDataDiffCallBack : DiffUtil.ItemCallback<HomeRecyclerItemViewModelData>() {

@@ -68,24 +68,41 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
     }
 
     override fun onItemClick(pos: Int) {
-            /*viewModel.getDataForObservation().observe(viewLifecycleOwner, {
+            viewModel.getDataForObservation().observe(viewLifecycleOwner, {
                 it?.let {
-
+                    if(!viewModel.getData(pos).expanded){
+                        viewModel.changeData(pos,true)
+                        homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                        homeRecyclerAdopter.notifyItemChanged(pos)
+                        homeRecyclerAdopter.notifyDataSetChanged()
+                    }
+                    else{
+                        viewModel.changeData(pos,false)
+                        homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                        homeRecyclerAdopter.notifyItemChanged(pos)
+                        homeRecyclerAdopter.notifyDataSetChanged()
+                    }
                 }
-            })*/
+            })
+    }
 
-        if(!viewModel.getData(pos).expanded){
-            viewModel.changeData(pos,true)
-            homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
-            //homeRecyclerAdopter.notifyItemChanged(pos)
-            homeRecyclerAdopter.notifyDataSetChanged()
-        }
-        else{
-            viewModel.changeData(pos,false)
-            homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
-            //homeRecyclerAdopter.notifyItemChanged(pos)
-            homeRecyclerAdopter.notifyDataSetChanged()
-        }
+    override fun onApplyClick(pos: Int) {
+        viewModel.getDataForObservation().observe(viewLifecycleOwner, {
+            it?.let {
+                if(!viewModel.getData(pos).requested){
+                    viewModel.requestForJob(pos,true)
+                    homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                    homeRecyclerAdopter.notifyItemChanged(pos)
+                    homeRecyclerAdopter.notifyDataSetChanged()
+                }
+                else{
+                    viewModel.requestForJob(pos,false)
+                    homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                    homeRecyclerAdopter.notifyItemChanged(pos)
+                    homeRecyclerAdopter.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
 

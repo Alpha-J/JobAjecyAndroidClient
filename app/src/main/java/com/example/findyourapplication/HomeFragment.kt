@@ -45,7 +45,6 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
         viewModel=HomeRecyclerItemViewModel()
         homeRecyclerAdopter= EmployeeHomeRecyclerAdopter(requireContext(),this)
         binding.employeeHomeRecyclerView.adapter=homeRecyclerAdopter
-
     }
 
     private fun viewModelObserver(){

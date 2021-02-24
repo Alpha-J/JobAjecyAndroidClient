@@ -26,6 +26,10 @@
     <string name="collapse">collapse</string>
     <string name="Requested">Requested</string>
     <string name="company_name">Company </string>
+    <string name="request_rejected">Rejected</string>
+    <string name="request_pending">Pending</string>
+    <string name="request_accepted">Accepted</string>
+
 
     <string-array name="userType">
         <item>Employer</item>

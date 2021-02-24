@@ -16,6 +16,8 @@ class RequestFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding:FragmentRequestBinding
+    private lateinit var requestRecyclerItemViewModel:RequestRecyclerItemViewModel
+    private lateinit var requestFragmentAdopter: EmployeeRequestFragmentAdopter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +30,23 @@ class RequestFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_request, container, false)
-
+        init()
+        viewModelObserver()
         return binding.root
+    }
+
+    private fun init(){
+        requestRecyclerItemViewModel= RequestRecyclerItemViewModel()
+        requestFragmentAdopter= EmployeeRequestFragmentAdopter(requireContext(),requestRecyclerItemViewModel)
+        binding.employeeRequestRecyclerView.adapter=requestFragmentAdopter
+    }
+
+    private fun viewModelObserver(){
+        requestRecyclerItemViewModel.getDataForObservation().observe(viewLifecycleOwner,{
+            it?.let {
+                requestFragmentAdopter.submitList(it)
+            }
+        })
     }
 
     companion object {

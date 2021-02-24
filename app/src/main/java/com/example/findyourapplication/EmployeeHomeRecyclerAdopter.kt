@@ -56,7 +56,7 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
 
 
         fun bind(item:HomeRecyclerItemViewModelData, position: Int, mOnRecyclerViewItemClickListener: OnRecyclerViewRequestItemClickListener){
-            val formatter = SimpleDateFormat("yyyy/MM/dd") //or use getDateInstance()
+            val formatter = SimpleDateFormat("yyyy / MM / dd") //or use getDateInstance()
             binding.jobDate.text=formatter.format(item.uploadedDate!!)
             binding.jobDescription.text=item.jobDescription
             binding.jobHeader.text=item.companyName
@@ -219,40 +219,23 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
             valueAnimator2.start()
             binding.showMoreJobDetailsTextView.text=context.resources.getString(R.string.more_details)
             valueAnimator.doOnEnd {
-
                 binding.collapse.startAnimation(fadeOut)
                 binding.collapse.visibility=View.INVISIBLE
-
                 binding.applyForJob.startAnimation(fadeOut)
                 binding.applyForJob.visibility=View.INVISIBLE
-
-
-
             }
             fadeOut.setAnimationListener(object:Animation.AnimationListener{
                 override fun onAnimationStart(animation: Animation?) {
-
                 }
-
                 override fun onAnimationEnd(animation: Animation?) {
-
                     binding.expandablePart.visibility = View.GONE
-
                     binding.showMoreJobDetails.visibility=View.VISIBLE
                     binding.showMoreJobDetails.startAnimation(fadeIn)
-
-
                 }
-
                 override fun onAnimationRepeat(animation: Animation?) {
-
                 }
-
             })
-
         }
-
-
     }
 
     class HomeDataDiffCallBack : DiffUtil.ItemCallback<HomeRecyclerItemViewModelData>() {

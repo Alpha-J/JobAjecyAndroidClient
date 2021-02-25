@@ -45,6 +45,10 @@ android {
 
 dependencies {
 
+    //pdf viewer
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
+
     //rating star
     implementation 'hyogeun.github.com.colorratingbar:ColorRatingBar:1.0.1'
 

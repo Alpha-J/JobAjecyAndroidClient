@@ -62,6 +62,35 @@ class EmployeeRequestFragmentAdopter(val context:Context,private val viewModel:R
         }
     }
 
+
+
+    class RequestViewHolder2(val binding:EmployeeRequestRecyclerItemBinding,val viewModel:RequestRecyclerItemViewModel,val context: Context):RecyclerView.ViewHolder(binding.root){
+        fun bind(item:RequestRecyclerItemViewModelData,position: Int){
+            binding.employeeRequestItemDate.text=item.date
+            binding.employeeRequestItemCompanyName.text=item.companyName
+            binding.employeeRequestItemJobTypeDesc.text=item.jobType
+            binding.employeeRequestTxtView.text=item.requestCondition
+            if(item.requestCondition==context.resources.getString(R.string.request_pending)){
+                binding.employeeRequestImageView.setImageResource(R.drawable.ic_pending)
+            }
+            if(item.requestCondition==context.resources.getString(R.string.request_accepted)){
+                binding.employeeRequestImageView.setImageResource(R.drawable.ic_check_mark_button)
+            }
+            if(item.requestCondition==context.resources.getString(R.string.request_rejected)){
+                binding.employeeRequestImageView.setImageResource(R.drawable.ic_cancel)
+            }
+
+        }
+        companion object{
+            fun from(parent: ViewGroup,viewModel:RequestRecyclerItemViewModel,context:Context):RequestViewHolder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = EmployeeRequestRecyclerItemBinding.inflate(layoutInflater, parent, false)
+                return RequestViewHolder(binding, viewModel,context)
+            }
+
+        }
+    }
+
     class RequestDataDiffCallBack: DiffUtil.ItemCallback<RequestRecyclerItemViewModelData>(){
         override fun areItemsTheSame(oldItem: RequestRecyclerItemViewModelData, newItem: RequestRecyclerItemViewModelData): Boolean {
             return oldItem.requestCondition==newItem.requestCondition

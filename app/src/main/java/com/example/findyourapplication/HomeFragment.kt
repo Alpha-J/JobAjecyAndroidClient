@@ -1,16 +1,11 @@
 package com.example.findyourapplication
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.Guideline
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.findyourapplication.databinding.FragmentHomeBinding
 
 private const val ARG_PARAM1 = "param1"

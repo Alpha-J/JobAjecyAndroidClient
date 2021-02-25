@@ -1,19 +1,9 @@
 package com.example.findyourapplication
 
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Typeface
-import android.os.Build
-import android.os.Handler
-import android.os.Looper
-import android.util.DisplayMetrics
-import android.util.TypedValue
 import android.view.*
 import android.view.animation.*
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.ListAdapter
@@ -21,7 +11,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findyourapplication.databinding.EmployeeHomeRecyclerItemBinding
 import java.text.SimpleDateFormat
-import java.util.*
 
 class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecyclerViewRequestItemClickListener): ListAdapter<HomeRecyclerItemViewModelData,EmployeeHomeRecyclerAdopter.HomeItemViewHolder>(HomeDataDiffCallBack()){
     private val mContext=context
@@ -239,7 +228,6 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
     }
 
     class HomeDataDiffCallBack : DiffUtil.ItemCallback<HomeRecyclerItemViewModelData>() {
-
         override fun areItemsTheSame(oldItem: HomeRecyclerItemViewModelData, newItem: HomeRecyclerItemViewModelData): Boolean {
             return oldItem.expanded==newItem.expanded
         }
@@ -248,7 +236,4 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
             return oldItem.equals(newItem)
         }
     }
-
-
-
 }

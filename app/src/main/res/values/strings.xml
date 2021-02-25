@@ -29,7 +29,9 @@
     <string name="request_rejected">Rejected</string>
     <string name="request_pending">Pending</string>
     <string name="request_accepted">Accepted</string>
-
+    <string name="email">Email</string>
+    <string name="resume">Resume</string>
+    <string name="add_update_resume">Add/Update Resume</string>
 
     <string-array name="userType">
         <item>Employer</item>

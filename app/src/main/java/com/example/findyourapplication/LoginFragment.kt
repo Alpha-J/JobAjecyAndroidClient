@@ -86,7 +86,8 @@ class Login : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                startActivity(Intent(activity, EmployeeActivity::class.java))
+                //startActivity(Intent(activity, EmployeeActivity::class.java))
+                startActivity(Intent(activity,EmployerActivity::class.java))
             }
 
             override fun onAnimationCancel(animation: Animator) {

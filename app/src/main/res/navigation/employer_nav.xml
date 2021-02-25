@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employer_nav"
+    app:startDestination="@id/employer_home_frag">
+
+    <fragment
+        android:id="@+id/employer_home_frag"
+        android:name="com.example.findyourapplication.EmployerHomeFragment"
+        android:label="EmployerHomeFragment"
+        tools:layout="@layout/fragment_employer_home"
+        >
+        <action
+            android:id="@+id/action_employerHomeFragment_to_employerRequestHandlerFragment"
+            app:destination="@id/employer_req_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_employerHomeFragment_to_employerProfileFragment"
+            app:destination="@id/employer_profile_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/employer_req_frag"
+        android:name="com.example.findyourapplication.EmployerRequestHandlerFragment"
+        android:label="EmployerRequestHandlerFragment"
+        tools:layout="@layout/fragment_employer_request_handler"
+        >
+        <action
+            android:id="@+id/action_employerRequestHandlerFragment_to_employerProfileFragment"
+            app:destination="@id/employer_profile_frag"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_left" />
+        <action
+            android:id="@+id/action_employerRequestHandlerFragment_to_employerHomeFragment"
+            app:destination="@id/employer_home_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/employer_profile_frag"
+        android:name="com.example.findyourapplication.EmployerProfileFragment"
+        android:label="EmployerProfileFragment"
+        tools:layout="@layout/fragment_employer_profile"
+        >
+        <action
+            android:id="@+id/action_employerProfileFragment_to_employerRequestHandlerFragment"
+            app:destination="@id/employer_req_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_employerProfileFragment_to_employerHomeFragment"
+            app:destination="@id/employer_home_frag"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_right" />
+    </fragment>
+</navigation>

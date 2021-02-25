@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmployerActivity"
+    android:background="@android:color/white"
+    >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/employer_actv_horizontal_line_1"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94"
+        />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/employer_fragment_contoller"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/employer_actv_horizontal_line_1"
+        tools:layout="@layout/fragment_employer_home"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/employer_nav"
+        />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/employer_actv_horizontal_line_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundColor="@color/purple_700"
+        app:menu="@menu/employer_bottom_nav"
+        app:indicatorRadius="10dp"
+        app:textColor="@android:color/white"
+        app:iconTint="@android:color/white"
+        android:elevation="200dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

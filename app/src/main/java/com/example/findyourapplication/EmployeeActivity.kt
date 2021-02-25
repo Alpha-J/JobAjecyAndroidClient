@@ -5,20 +5,15 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.findyourapplication.databinding.ActivityEmployeeBinding
-import com.example.findyourapplication.databinding.FragmentProfileBinding
 
 class EmployeeActivity : AppCompatActivity() {
 
-
-
     private lateinit var binding: ActivityEmployeeBinding
     private lateinit var navController:NavController
-    private lateinit var homeRecyclerItemViewModel: HomeRecyclerItemViewModel
+    //private lateinit var homeRecyclerItemViewModel: HomeRecyclerItemViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +40,12 @@ class EmployeeActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.employee_fragment_contoller) as NavHostFragment
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
-        homeRecyclerItemViewModel= HomeRecyclerItemViewModel()
+        //homeRecyclerItemViewModel= HomeRecyclerItemViewModel()
     }
 
-    fun getHomeViewModel():HomeRecyclerItemViewModel{
-        return homeRecyclerItemViewModel
-    }
+    /*fun getHomeViewModel():HomeRecyclerItemViewModel{
+        //return homeRecyclerItemViewModel
+    }*/
 
     companion object{
         fun getHomeViewModel():HomeRecyclerItemViewModel{

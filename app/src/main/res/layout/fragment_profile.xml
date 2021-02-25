@@ -10,6 +10,173 @@
     android:background="@drawable/profileback"
     >
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="2dp"
+        android:background="@color/black_transparent_40"
+        android:visibility="gone"
+        android:id="@+id/dark_background"
+
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".35"
+            android:id="@+id/profile_frag_inner_h1"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".2"
+            android:id="@+id/profile_frag_inner_v1"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".8"
+            android:id="@+id/profile_frag_inner_v2"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".65"
+            android:id="@+id/profile_frag_inner_h2"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintStart_toStartOf="@id/profile_frag_inner_v1"
+            app:layout_constraintEnd_toEndOf="@id/profile_frag_inner_v2"
+            app:layout_constraintTop_toTopOf="@id/profile_frag_inner_h1"
+            app:layout_constraintBottom_toTopOf="@id/profile_frag_inner_h2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/change_profile_data_background"
+            >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".2"
+                android:id="@+id/profile_frag_inner2_h2"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".75"
+                android:id="@+id/profile_frag_inner2_h3"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".9"
+                android:id="@+id/profile_frag_inner2_h4"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".15"
+                android:id="@+id/profile_frag_inner2_v1"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".4"
+                android:id="@+id/profile_frag_inner2_v2"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".6"
+                android:id="@+id/profile_frag_inner2_v3"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".85"
+                android:id="@+id/profile_frag_inner2_v4"
+                />
+
+
+            <TextView
+                app:layout_constraintTop_toTopOf="@id/profile_frag_inner2_h2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/change_profileData_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/purple_700"
+                android:layout_marginTop="10dp"
+                />
+
+            <EditText
+                app:layout_constraintStart_toStartOf="@id/change_profileData_textview"
+                app:layout_constraintTop_toBottomOf="@id/change_profileData_textview"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/change_profileData_edittext"
+                android:layout_margin="8dp"
+                android:textColor="@color/purple_700"
+
+                android:background="@drawable/textview_background_1"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                app:layout_constraintStart_toStartOf="@id/profile_frag_inner2_v1"
+                app:layout_constraintEnd_toStartOf="@id/profile_frag_inner2_v2"
+                app:layout_constraintTop_toBottomOf="@id/profile_frag_inner2_h3"
+                app:layout_constraintBottom_toTopOf="@id/profile_frag_inner2_h4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/cancel"
+                android:id="@+id/profile_cancel_btn"
+                android:background="@drawable/button1_effect"
+                android:textSize="13sp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                app:layout_constraintStart_toStartOf="@id/profile_frag_inner2_v3"
+                app:layout_constraintEnd_toStartOf="@id/profile_frag_inner2_v4"
+                app:layout_constraintTop_toBottomOf="@id/profile_frag_inner2_h3"
+                app:layout_constraintBottom_toTopOf="@id/profile_frag_inner2_h4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/apply"
+                android:id="@+id/profile_apply_btn"
+                android:background="@drawable/button1_effect"
+                android:textSize="13sp"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +194,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:background="@android:color/transparent"
         />
+
 
 
 

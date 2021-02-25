@@ -32,6 +32,8 @@
     <string name="email">Email</string>
     <string name="resume">Resume</string>
     <string name="add_update_resume">Add/Update Resume</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
 
     <string-array name="userType">
         <item>Employer</item>

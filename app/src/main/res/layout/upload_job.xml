@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:translationZ="15dp"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/purple_700"
+        android:textAllCaps="false"
+        android:textSize="25sp"
+        android:text="@string/upload_new_job"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="12dp"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h1"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".1"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h2"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h3"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".3"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h4"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".4"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h5"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".5"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h6"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".8"
+        />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_h7"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".87"
+        />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_v1"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_v2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".4"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_v3"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".6"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ulpoad_job_v4"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/ulpoad_job_h6"
+        app:layout_constraintBottom_toTopOf="@id/ulpoad_job_h7"
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button1_effect"
+        android:text="@string/upload_job"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:id="@+id/upload_job_btn"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toBottomOf="@id/ulpoad_job_h6"
+        app:layout_constraintBottom_toTopOf="@id/ulpoad_job_h7"
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v3"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button1_effect"
+        android:text="@string/cancel"
+        android:textSize="12sp"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:id="@+id/cancel_upload_job_btn"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        app:layout_constraintTop_toBottomOf="@id/ulpoad_job_h1"
+        app:layout_constraintHeight_percent=".06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_signup_edit_text"
+        android:textColorHint="@color/teal_200"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:hint="Company Name"
+        android:textColor="@color/black"
+        android:id="@+id/upload_page_company_edittext"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        app:layout_constraintTop_toBottomOf="@id/upload_page_company_edittext"
+        app:layout_constraintHeight_percent=".06"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_signup_edit_text"
+        android:textColorHint="@color/teal_200"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:hint="Job Type"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:id="@+id/upload_page_job_type"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        app:layout_constraintTop_toBottomOf="@id/upload_page_job_type"
+        app:layout_constraintHeight_percent=".1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/big_textview_back"
+        android:textColorHint="@color/teal_200"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:gravity="top|start"
+        android:hint="Skills for this job"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:id="@+id/upload_page_skills"
+        android:maxLines="3"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        app:layout_constraintTop_toBottomOf="@id/upload_page_skills"
+        app:layout_constraintHeight_percent=".05"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_signup_edit_text"
+        android:textColorHint="@color/teal_200"
+        android:paddingStart="25dp"
+        android:paddingEnd="15dp"
+        android:gravity="center"
+        android:hint="Skill rate from 0 to 5"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:id="@+id/upload_page_skill_rate"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        app:layout_constraintStart_toStartOf="@id/ulpoad_job_v1"
+        app:layout_constraintEnd_toStartOf="@id/ulpoad_job_v4"
+        app:layout_constraintTop_toBottomOf="@id/upload_page_skill_rate"
+        app:layout_constraintHeight_percent=".1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/big_textview_back"
+        android:textColorHint="@color/teal_200"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:gravity="top|start"
+        android:hint="Job description"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:id="@+id/upload_page_description"
+        android:maxLines="3"
+        />
+
+
+
+
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/upload_progress"
+        app:indicatorColor="@color/purple_700"
+        android:visibility="gone"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

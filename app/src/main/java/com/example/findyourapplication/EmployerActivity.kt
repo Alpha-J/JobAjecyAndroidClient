@@ -3,15 +3,11 @@ package com.example.findyourapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.findyourapplication.databinding.ActivityEmployerBinding
-import me.ibrahimsn.lib.OnItemSelectedListener
 
 class EmployerActivity : AppCompatActivity() {
 

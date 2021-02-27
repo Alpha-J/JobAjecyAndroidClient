@@ -38,6 +38,9 @@
     <string name="upload_new_job">Upload New Job</string>
     <string name="accept_request">Accept Request</string>
     <string name="delete_job">Delete Job</string>
+    <string name="accept">Accept</string>
+    <string name="see_resume">See resume</string>
+    <string name="reject">Reject</string>
 
     <string-array name="userType">
         <item>Employer</item>

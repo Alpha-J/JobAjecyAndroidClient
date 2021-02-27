@@ -77,6 +77,12 @@ class EmployerHomeFragment : Fragment(), EmployerHomeRecyclerAdopter.OnEmployerH
     }
 
     override fun onItemClick(pos: Int) {
-
+        employerHomeViewModel.getDataForObservation().observe(viewLifecycleOwner,{
+            employerHomeViewModel.removeItem(pos)
+            employerHomeRecyclerAdopter.notifyItemRemoved(pos)
+            employerHomeRecyclerAdopter.notifyItemRangeChanged(pos,employerHomeViewModel.getDataSize())
+            employerHomeRecyclerAdopter.notifyDataSetChanged()
+            employerHomeRecyclerAdopter.addViewAndSubmitList(it)
+        })
     }
 }

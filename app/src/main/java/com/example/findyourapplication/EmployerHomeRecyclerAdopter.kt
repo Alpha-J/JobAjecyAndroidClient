@@ -63,7 +63,7 @@ class EmployerHomeRecyclerAdopter(onItemClickListener:OnEmployerHomeRecyclerView
             binding.jobTypeDesc.text=item.jobType
 
             binding.deleteJob.setOnClickListener {
-                clickListener.onItemClick(position)
+                clickListener.onItemClick(adapterPosition)
             }
 
             binding.executePendingBindings()

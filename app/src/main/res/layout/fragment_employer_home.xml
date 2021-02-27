@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".75"
+        app:layout_constraintGuide_percent=".83"
         android:id="@+id/employe_rec_v2"
         />
 
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".8"
+        app:layout_constraintGuide_percent=".9"
         android:id="@+id/employe_rec_h1"
         />
 

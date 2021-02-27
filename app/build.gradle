@@ -53,8 +53,9 @@ dependencies {
     //rating star
     implementation 'hyogeun.github.com.colorratingbar:ColorRatingBar:1.0.1'
 
-    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
-    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    //retrofit
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
     //recycler view
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

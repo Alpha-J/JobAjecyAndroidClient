@@ -13,7 +13,7 @@ class EmployerHomeViewModel: ViewModel() {
         val list=ArrayList<EmployerHomeViewModelData>()
         for(i in 0 until 50){
             val data=EmployerHomeViewModelData()
-            data.companyName="This is company .... "
+            data.companyName="This is company $i "
             data.jobDescription="This is a long description for this part of recycler view to check out the specs.\nThis is" +
                     "the $i'th item to be checked!"
             data.jobType="Engineering"
@@ -28,8 +28,16 @@ class EmployerHomeViewModel: ViewModel() {
 
     }
 
+    fun getDataSize():Int{
+        return dataList.value!!.size
+    }
+
     fun getDataForObservation():MutableLiveData<ArrayList<EmployerHomeViewModelData>>{
         return dataList
+    }
+
+    fun removeItem(i:Int){
+        dataList.value!!.remove(dataList.value!![i])
     }
 
 }

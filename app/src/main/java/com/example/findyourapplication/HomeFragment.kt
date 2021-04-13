@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withCreated
+import androidx.lifecycle.withStarted
 import com.example.findyourapplication.databinding.FragmentHomeBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -18,6 +22,8 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding:FragmentHomeBinding
+    private lateinit var viewModelFactory:HomeViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -29,23 +35,35 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
-        init()
 
-        viewModelObserver()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    private fun init(){
-        viewModel=HomeRecyclerItemViewModel()
-        homeRecyclerAdopter= EmployeeHomeRecyclerAdopter(requireContext(),this)
-        binding.employeeHomeRecyclerView.adapter=homeRecyclerAdopter
+        lifecycleScope.launchWhenStarted {
+            init()
+            viewModelObserver()
+        }
+
+    }
+
+
+    private suspend fun init(){
+        withStarted {
+            viewModelFactory= HomeViewModelFactory(requireContext())
+            viewModel=ViewModelProvider(this,viewModelFactory).get(HomeRecyclerItemViewModel::class.java)
+            binding.lifecycleOwner=this
+            homeRecyclerAdopter= EmployeeHomeRecyclerAdopter(requireContext(),this)
+            binding.employeeHomeRecyclerView.adapter=homeRecyclerAdopter
+        }
     }
 
     private fun viewModelObserver(){
         viewModel.getDataForObservation().observe(viewLifecycleOwner, {
             it?.let {
-                homeRecyclerAdopter.submitList(it)
+                homeRecyclerAdopter.addViewSubmitList(it)
             }
         })
     }
@@ -66,13 +84,13 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
                 it?.let {
                     if(!viewModel.getData(pos).expanded){
                         viewModel.changeData(pos,true)
-                        homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                        homeRecyclerAdopter.addViewSubmitList(viewModel.getDataForObservation().value)
                         homeRecyclerAdopter.notifyItemChanged(pos)
                         homeRecyclerAdopter.notifyDataSetChanged()
                     }
                     else{
                         viewModel.changeData(pos,false)
-                        homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                        homeRecyclerAdopter.addViewSubmitList(viewModel.getDataForObservation().value)
                         homeRecyclerAdopter.notifyItemChanged(pos)
                         homeRecyclerAdopter.notifyDataSetChanged()
                     }
@@ -85,13 +103,13 @@ class HomeFragment : Fragment(),EmployeeHomeRecyclerAdopter.OnRecyclerViewReques
             it?.let {
                 if(!viewModel.getData(pos).requested){
                     viewModel.requestForJob(pos,true)
-                    homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                    homeRecyclerAdopter.addViewSubmitList(viewModel.getDataForObservation().value)
                     homeRecyclerAdopter.notifyItemChanged(pos)
                     homeRecyclerAdopter.notifyDataSetChanged()
                 }
                 else{
                     viewModel.requestForJob(pos,false)
-                    homeRecyclerAdopter.submitList(viewModel.getDataForObservation().value)
+                    homeRecyclerAdopter.addViewSubmitList(viewModel.getDataForObservation().value)
                     homeRecyclerAdopter.notifyItemChanged(pos)
                     homeRecyclerAdopter.notifyDataSetChanged()
                 }

@@ -10,48 +10,76 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findyourapplication.databinding.EmployeeHomeRecyclerItemBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.ClassCastException
 import java.text.SimpleDateFormat
 
-class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecyclerViewRequestItemClickListener): ListAdapter<HomeRecyclerItemViewModelData,EmployeeHomeRecyclerAdopter.HomeItemViewHolder>(HomeDataDiffCallBack()){
+private val ITEM_VIEW_TYPE_ITEM = 1
+
+class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecyclerViewRequestItemClickListener): ListAdapter<EmployeeHomeRecyclerAdopter.DataItem,RecyclerView.ViewHolder>(HomeDataDiffCallBack()){
     private val mContext=context
-    private var mHomeViewModel=HomeRecyclerItemViewModel()
     private var mOnRecyclerViewItemClickListener=onItemClickListener
+    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
 
-    init {
-        setHasStableIds(true);
+    fun addViewSubmitList(list:List<HomeRecyclerItemViewModelData>?){
+        adapterScope.launch {
+            val items=when(list){
+                null-> listOf(null)
+                else->list.map { DataItem.EmployeeHomeItem(it)}
+            }
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemViewHolder {
-        return HomeItemViewHolder.from(parent,mHomeViewModel,mContext)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType){
+            ITEM_VIEW_TYPE_ITEM->HomeItemViewHolder.from(parent,mContext)
+            else ->throw ClassCastException("UnKnown viewType $viewType")
+        }
     }
 
-    override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
-        holder.bind(getItem(position),position,mOnRecyclerViewItemClickListener)
-    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder){
+            is HomeItemViewHolder->{
+                val item = getItem(position) as DataItem.EmployeeHomeItem
+                holder.bind(item.item,position,mOnRecyclerViewItemClickListener)
+            }
+        }
 
-    override fun getItemCount()=mHomeViewModel.getDataForObservation().value!!.size
+    }
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return when(getItem(position)){
+            is DataItem.EmployeeHomeItem->ITEM_VIEW_TYPE_ITEM
+        }
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
 
-    class HomeItemViewHolder(val binding: EmployeeHomeRecyclerItemBinding,val viewModel: HomeRecyclerItemViewModel,val context:Context)
+    class HomeItemViewHolder private constructor(val binding: EmployeeHomeRecyclerItemBinding,val context:Context)
         :RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(item:HomeRecyclerItemViewModelData, position: Int, mOnRecyclerViewItemClickListener: OnRecyclerViewRequestItemClickListener){
-            val formatter = SimpleDateFormat("yyyy / MM / dd") //or use getDateInstance()
-            binding.jobDate.text=formatter.format(item.uploadedDate!!)
+            //val formatter = SimpleDateFormat("yyyy / MM / dd") //or use getDateInstance()
+
+
+
+            //binding.homeItem=item
+
+
+            binding.jobDate.text=item.uploadedDate
             binding.jobDescription.text=item.jobDescription
             binding.jobHeader.text=item.companyName
             binding.jobNeededSkillsDesc.text=item.neededSkills
             binding.rating.rating=item.skillRate!!
             binding.jobTypeDesc.text=item.jobType
+
 
             binding.showMoreJobDetails.setOnClickListener {
                 expand(binding,context)
@@ -71,10 +99,11 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
         }
 
         companion object {
-            fun from(parent: ViewGroup,viewModel:HomeRecyclerItemViewModel,context:Context): HomeItemViewHolder {
+            fun from(parent: ViewGroup,context:Context): HomeItemViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = EmployeeHomeRecyclerItemBinding.inflate(layoutInflater, parent, false)
-                return HomeItemViewHolder(binding,viewModel,context)
+                
+                return HomeItemViewHolder(binding,context)
             }
         }
     }
@@ -227,13 +256,22 @@ class EmployeeHomeRecyclerAdopter(val context:Context,onItemClickListener:OnRecy
         }
     }
 
-    class HomeDataDiffCallBack : DiffUtil.ItemCallback<HomeRecyclerItemViewModelData>() {
-        override fun areItemsTheSame(oldItem: HomeRecyclerItemViewModelData, newItem: HomeRecyclerItemViewModelData): Boolean {
-            return oldItem.expanded==newItem.expanded
+    sealed class DataItem{
+        data class EmployeeHomeItem(val item:HomeRecyclerItemViewModelData):DataItem(){
+            override val id=item.id
+        }
+        abstract val id:Long
+    }
+
+    class HomeDataDiffCallBack : DiffUtil.ItemCallback<DataItem>() {
+        override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+            return oldItem.id==newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: HomeRecyclerItemViewModelData, newItem: HomeRecyclerItemViewModelData): Boolean {
+        override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
             return oldItem.equals(newItem)
         }
     }
+
+
 }

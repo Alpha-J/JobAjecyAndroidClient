@@ -46,10 +46,10 @@ class EmployeeActivity : AppCompatActivity() {
     /*fun getHomeViewModel():HomeRecyclerItemViewModel{
         //return homeRecyclerItemViewModel
     }*/
-
+    /*
     companion object{
         fun getHomeViewModel():HomeRecyclerItemViewModel{
             return HomeRecyclerItemViewModel()
         }
-    }
+    }*/
 }

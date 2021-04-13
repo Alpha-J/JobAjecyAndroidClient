@@ -3,7 +3,8 @@ package com.example.findyourapplication
 import java.util.*
 
 class HomeRecyclerItemViewModelData {
-    var uploadedDate: Date? =null
+    var id:Long=0
+    var uploadedDate: String? =null
     var jobDescription:String?=null
     var expanded=false
     var requested=false

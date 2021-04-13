@@ -13,7 +13,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class EmployerHomeFragment : Fragment(), EmployerHomeRecyclerAdopter.OnEmployerHomeRecyclerViewItemClickListener {
+class EmployerHomeFragment : Fragment(),EmployerHomeRecyclerAdopter.OnEmployerHomeRecyclerViewItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var binding:FragmentEmployerHomeBinding
@@ -36,7 +36,7 @@ class EmployerHomeFragment : Fragment(), EmployerHomeRecyclerAdopter.OnEmployerH
     }
 
     private fun init(){
-        employerHomeViewModel= EmployerHomeViewModel()
+        employerHomeViewModel= EmployerHomeViewModel(requireContext())
         employerHomeRecyclerAdopter= EmployerHomeRecyclerAdopter(this)
         binding.employerHomeRecyclerView.adapter=employerHomeRecyclerAdopter
 

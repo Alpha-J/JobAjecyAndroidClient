@@ -163,6 +163,7 @@
         android:textColor="@android:color/white"
         android:textSize="10sp"
         android:background="@drawable/date_text_background"
+
         />
 
 

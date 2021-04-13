@@ -1,31 +1,63 @@
 package com.example.findyourapplication
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import java.util.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.IOException
 import kotlin.collections.ArrayList
 
-class EmployerHomeViewModel: ViewModel() {
+class EmployerHomeViewModel(context: Context): ViewModel() {
 
     private var dataList=MutableLiveData<ArrayList<EmployerHomeViewModelData>>()
 
     init {
         val list=ArrayList<EmployerHomeViewModelData>()
+
+        val jobFileString = getJsonDataFromAsset(context, "employer_and_employee_mock_data.json")
+
+        val dateFile=getJsonDataFromAsset(context,"MOCK_DATA.json")
+
+        val nameFile=getJsonDataFromAsset(context,"employer_and_employee_name_mock_data.json")
+
+        val gson = Gson()
+        val listJobType = object : TypeToken<List<SampleData>>() {}.type
+
+        val jobs: List<SampleData> = gson.fromJson(jobFileString, listJobType)
+        //persons.forEachIndexed { idx, person -> Log.i("data", "> Item $idx:\n$person") }
+
+        val datesType=object : TypeToken<List<DateFromJson>>() {}.type
+        val dateList:List<DateFromJson> = gson.fromJson(dateFile,datesType)
+
+        val namesType=object : TypeToken<List<NamesData>>() {}.type
+        val namesList:List<NamesData> = gson.fromJson(nameFile,namesType)
+        //dateList.forEachIndexed{idx, dateList->Log.}
+
         for(i in 0 until 50){
             val data=EmployerHomeViewModelData()
-            data.companyName="This is company $i "
-            data.jobDescription="This is a long description for this part of recycler view to check out the specs.\nThis is" +
-                    "the $i'th item to be checked!"
-            data.jobType="Engineering"
-            data.neededSkills="Skill_1,Skill_1,Skill_1Skill_1,Skill_1\nSkill_1,Skill_1,Skill_1,Skill_1\n" +
-                    "Skill_1,Skill_1,Skill_1,Skill_1"
+            data.companyName=namesList[i].company_name
+            data.jobDescription=jobs[i].description
+            data.jobType=jobs[i].skill_name
+            data.neededSkills=namesList[i].description
             data.skillRate=i.rem(5).toFloat()
-            data.uploadedDate= Calendar.getInstance().time
+            data.uploadedDate= dateList[i].date
             data.id=i.toLong()
             list.add(data)
         }
         dataList.value=list
 
+    }
+
+    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
     }
 
     fun getDataSize():Int{

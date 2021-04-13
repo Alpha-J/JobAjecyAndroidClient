@@ -53,9 +53,9 @@ class EmployerHomeRecyclerAdopter(onItemClickListener:OnEmployerHomeRecyclerView
 
     class EmployerHomeItemHolder private constructor(val binding:EmployerHomeCardviewItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: EmployerHomeViewModelData, clickListener: OnEmployerHomeRecyclerViewItemClickListener, position:Int) {
-            val formatter = SimpleDateFormat("yyyy / MM / dd")
-
-            binding.jobDate.text=formatter.format(item.uploadedDate!!)
+            //val formatter = SimpleDateFormat("yyyy / MM / dd")
+            //formatter.format(item.uploadedDate!!)
+            binding.jobDate.text=item.uploadedDate
             binding.jobDescription.text=item.jobDescription
             binding.jobHeader.text=item.companyName
             binding.jobNeededSkillsDesc.text=item.neededSkills

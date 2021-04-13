@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.findyourapplication.databinding.FragmentEmployerRequestHandlerBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -30,12 +35,22 @@ class EmployerRequestHandlerFragment : Fragment(), EmployerRequestRecyclerAdopte
         savedInstanceState: Bundle?): View? {
 
         binding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_employer_request_handler, container, false)
-        init()
+
         return binding.root
     }
 
-    private fun init(){
-        employerRequestHandlerViewModel= EmployerRequestHandlerViewModel()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            init()
+        }
+    }
+
+    private suspend fun init(){
+        withContext(Dispatchers.Default){
+            employerRequestHandlerViewModel= EmployerRequestHandlerViewModel()
+        }
+
         employerRequestRecyclerAdopter= EmployerRequestRecyclerAdopter(this)
         binding.employerRequestHandlerRecyclerView.adapter=employerRequestRecyclerAdopter
         employerRequestHandlerViewModel.getDataForObservation().observe(viewLifecycleOwner,{

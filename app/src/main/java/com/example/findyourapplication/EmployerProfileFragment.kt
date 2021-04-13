@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.findyourapplication.databinding.FragmentEmployerProfileBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -33,13 +37,21 @@ class EmployerProfileFragment : Fragment() ,
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_employer_profile, container, false)
-        init()
-        observeViewModel()
         return binding.root
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+            init()
+            observeViewModel()
+
+
+    }
+
     private fun init(){
-        employerProfileViewModel= EmployerProfileViewModel(requireContext())
+            employerProfileViewModel= EmployerProfileViewModel(requireContext())
+
         employerProfileRecyclerAdopter= EmployerProfileRecyclerAdopter(requireContext(),this)
         binding.employerProfileRecyclerView.adapter=employerProfileRecyclerAdopter
         binding.darkBackground.setOnClickListener {

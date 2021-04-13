@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.example.findyourapplication.databinding.FragmentEmployerHomeBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -28,35 +32,49 @@ class EmployerHomeFragment : Fragment(),EmployerHomeRecyclerAdopter.OnEmployerHo
         }
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_employer_home, container, false)
-        init()
-        observeData()
         return binding.root
     }
 
-    private fun init(){
-        employerHomeViewModel= EmployerHomeViewModel(requireContext())
-        employerHomeRecyclerAdopter= EmployerHomeRecyclerAdopter(this)
-        binding.employerHomeRecyclerView.adapter=employerHomeRecyclerAdopter
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.uploadJobBtn.setOnClickListener {
-            val fadeIn= AnimationUtils.loadAnimation(context,R.anim.fade_in)
-            val fadeOut= AnimationUtils.loadAnimation(context,R.anim.fade_out)
-            binding.uploadJobView.root.visibility=View.VISIBLE
-            binding.uploadJobView.root.startAnimation(fadeIn)
-            binding.uploadJobBtn.startAnimation(fadeOut)
-            binding.uploadJobBtn.visibility=View.GONE
+        lifecycleScope.launch {
+            init()
+            observeData()
+        }
 
+
+    }
+
+    private suspend fun init(){
+
+
+        withContext(Dispatchers.Default){
+            employerHomeViewModel= EmployerHomeViewModel(requireContext())
         }
-        binding.uploadJobView.cancelUploadJobBtn.setOnClickListener {
-            val fadeIn= AnimationUtils.loadAnimation(context,R.anim.fade_in)
-            val fadeOut= AnimationUtils.loadAnimation(context,R.anim.fade_out)
-            binding.uploadJobView.root.startAnimation(fadeOut)
-            binding.uploadJobView.root.visibility=View.GONE
-            binding.uploadJobBtn.startAnimation(fadeIn)
-            binding.uploadJobBtn.visibility=View.VISIBLE
-        }
+            employerHomeRecyclerAdopter= EmployerHomeRecyclerAdopter(this)
+            binding.employerHomeRecyclerView.adapter=employerHomeRecyclerAdopter
+            binding.uploadJobBtn.setOnClickListener {
+                val fadeIn= AnimationUtils.loadAnimation(context,R.anim.fade_in)
+                val fadeOut= AnimationUtils.loadAnimation(context,R.anim.fade_out)
+                binding.uploadJobView.root.visibility=View.VISIBLE
+                binding.uploadJobView.root.startAnimation(fadeIn)
+                binding.uploadJobBtn.startAnimation(fadeOut)
+                binding.uploadJobBtn.visibility=View.GONE
+
+            }
+            binding.uploadJobView.cancelUploadJobBtn.setOnClickListener {
+                val fadeIn= AnimationUtils.loadAnimation(context,R.anim.fade_in)
+                val fadeOut= AnimationUtils.loadAnimation(context,R.anim.fade_out)
+                binding.uploadJobView.root.startAnimation(fadeOut)
+                binding.uploadJobView.root.visibility=View.GONE
+                binding.uploadJobBtn.startAnimation(fadeIn)
+                binding.uploadJobBtn.visibility=View.VISIBLE
+            }
+
     }
 
     private fun observeData(){
